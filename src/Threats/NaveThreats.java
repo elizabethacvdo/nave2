@@ -5,9 +5,9 @@
  */
 package Threats;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import static java.lang.Thread.sleep;
 import static java.lang.Thread.yield;
 import javax.swing.*;
 
@@ -15,8 +15,8 @@ import javax.swing.*;
  *
  * @author Elizabeth
  */
-public class NaveThreats extends Thread {
-
+public class NaveThreats extends Thread implements KeyListener{
+    
     private String nombre;
     private int limite, x, y;
     private JLabel nave;
@@ -33,17 +33,37 @@ public class NaveThreats extends Thread {
         this.x = x;
         this.y = y;
         this.nave = nave;
+        nave.addKeyListener(this);
     }
+    public void keyTyped(KeyEvent e) {
+}
+       
     
-       private void PanelkeyPressed(java.awt.event.KeyEvent ewt) {
-            x = nave.getX();
-            y = nave.getX();
-        switch(ewt.getExtendedKeyCode()){
-            case KeyEvent.VK_UP:
-                if(nave.getY()>=2)
-                    nave.setLocation(x, y-2);
-                    break;
-                }
+   
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==KeyEvent.VK_UP){
+            nave.setLocation(nave.getX(),nave.getY()+100);
+            
+        } 
+        if(e.getKeyCode()==KeyEvent.VK_DOWN){
+            nave.setLocation(nave.getX(),nave.getY()-100);
+            
+        } /*
+        if(e.getKeyCode()==KeyEvent.VK_SPACE&&nave.detenerDisparo){
+            nave.disparo=true;
+            nave.detenerDisparo=false;
         }
+        if((e.getKeyChar()=='r'||e.getKeyChar()=='R')&&(nave.matarAliado||nave.matarEnemigo)){
+            nave.reiniciar();
+        }*/
+        
+}
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+       
     }
 
