@@ -54,13 +54,13 @@ public class Gui extends JFrame {
         Container container = getContentPane();
 
         JLabel fondo = new JLabel();
-        fondo.setSize(700, 700);
+        fondo.setSize(800, 400);
         ImageIcon imgFondo = new ImageIcon(getClass().getResource("/GUI/space.gif"));
 
-        Icon icono = new ImageIcon(imgFondo.getImage().getScaledInstance(700, 700, Image.SCALE_DEFAULT));
+        Icon icono = new ImageIcon(imgFondo.getImage().getScaledInstance(800, 400, Image.SCALE_DEFAULT));
         fondo.setIcon(icono);
 
-        fondo.setBounds(0, 0, 700, 700);
+        fondo.setBounds(0, 0, 800, 400);
 
        
             
@@ -83,7 +83,7 @@ public class Gui extends JFrame {
 
 
             
-                setSize(700,700);
+                setSize(800,400);
            
     }
     /***********************************************************************************************************/

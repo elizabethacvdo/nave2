@@ -35,6 +35,7 @@ public class navePrincipal extends Thread implements KeyListener{
         this.labelNave = nave;
         this.padre=padre;
         padre.addKeyListener(this);
+        padre.setResizable(false); 
     }      
 
     @Override
@@ -48,17 +49,17 @@ public class navePrincipal extends Thread implements KeyListener{
         
         switch(ke.getExtendedKeyCode()){// captura las teclas
 case KeyEvent.VK_UP: 
-    if(labelNave.getY()>=10){
-    labelNave.setLocation(labelNave.getX(),labelNave.getY()-13);}//arriba}
-break;
+    if(labelNave.getY()>=2)
+    labelNave.setLocation(labelNave.getX(),labelNave.getY()-13);//arriba}
+    break;
 case KeyEvent.VK_DOWN: 
-    if(labelNave.getY()<650){labelNave.setLocation(labelNave.getX(),labelNave.getY()+13);}//abajo
-break;
+    if(labelNave.getY()<=200)labelNave.setLocation(labelNave.getX(),labelNave.getY()+13);//abajo
+    break;
 case KeyEvent.VK_LEFT: 
-    if(labelNave.getX()>=5){labelNave.setLocation(labelNave.getX()-13,labelNave.getY());}// derecha
+    if(labelNave.getX()>=5)labelNave.setLocation(labelNave.getX()-13,labelNave.getY());// derecha
 break;
 case KeyEvent.VK_RIGHT: 
-    if(labelNave.getX()<650){labelNave.setLocation(labelNave.getX()+13,labelNave.getY());} //izquierda
+    if(labelNave.getX()<650)labelNave.setLocation(labelNave.getX()+13,labelNave.getY()); //izquierda
 break; // hace que la imagen se mueva con las teclas.
 }
     }
