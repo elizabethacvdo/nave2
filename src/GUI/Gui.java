@@ -25,14 +25,14 @@ import javax.swing.JLabel;
  */
 public class Gui extends JFrame {
 
-    private JLabel labelNave,time,time2;
+    private JLabel labelNave,time,time2,asteroide,asteroide2,asteroide3;
     private JButton inicio;
     private String[] nombres = {"nave"};
 
     public Gui() {
         super("Juego De Naves");
         initialcomponents();
-       
+        
         Fondo p = new Fondo("space.gif");
         this.add(p, BorderLayout.CENTER);
         p.repaint();
@@ -48,7 +48,11 @@ public class Gui extends JFrame {
         setLayout(null);
 
         labelNave =new JLabel();
+        asteroide =new JLabel();
+        asteroide2 =new JLabel();
+        asteroide3 =new JLabel();
         time =new JLabel();
+        time2 =new JLabel();
         time2 =new JLabel();
         time2.setText("tiempo");
         Container container = getContentPane();
@@ -65,19 +69,38 @@ public class Gui extends JFrame {
        
             
             labelNave.setIcon(new ImageIcon(getClass().getResource("nave.gif")));
+            asteroide.setBounds(800,200, 50, 50);
+            asteroide2.setBounds(800,100, 50, 50);
             labelNave.setBounds(10, 10, 200, 200);
+            asteroide3.setBounds(800,175, 50, 50);
+            ImageIcon img = new ImageIcon(getClass().getResource("/GUI/Asteroid2b.gif"));
+            Icon icon = new ImageIcon(img.getImage().getScaledInstance(asteroide.getWidth(),asteroide.getHeight(), Image.SCALE_DEFAULT));
+        asteroide.setIcon(icon);
+        
+        ImageIcon imga = new ImageIcon(getClass().getResource("/GUI/Asteroid2b.gif"));
+            Icon icon2 = new ImageIcon(imga.getImage().getScaledInstance(asteroide2.getWidth(),asteroide2.getHeight(), Image.SCALE_DEFAULT));
+        asteroide2.setIcon(icon2);
+       
+        ImageIcon imgam = new ImageIcon(getClass().getResource("/GUI/Asteroid2b.gif"));
+            Icon icon3 = new ImageIcon(imgam.getImage().getScaledInstance(asteroide3.getWidth(),asteroide3.getHeight(), Image.SCALE_DEFAULT));
+        asteroide3.setIcon(icon3);
+            
+            
             time.setBounds(50,2, 100,100);
             time.setForeground(Color.yellow);
             time2.setBounds(3,2, 100,100);
             time2.setForeground(Color.yellow);
-             Tiempo tim=new Tiempo(time,getVentana());
+             Tiempo tim=new Tiempo(time,getVentana(),asteroide,asteroide2,asteroide3);
              tim.start();
              navePrincipal na=new navePrincipal("algo",600,labelNave,getVentana());
             container.add(labelNave);
+            container.add(asteroide);
+             container.add(asteroide2);
+             container.add(asteroide3);
             container.add(time);  
             container.add(time2);
-           
-       
+            
+      
 
         container.add(fondo);
 
@@ -87,7 +110,21 @@ public class Gui extends JFrame {
            
     }
     /***********************************************************************************************************/
-    
+    /*
+    public void choque(){
+        int x=labelNave.getX();
+        int ay=labelNave.getHeight();
+        int y=labelNave.getY();
+        int ax=labelNave.getWidth();
+        if(this.asteroide.getX()>=x && this.asteroide.getX()<=x+ax &&this.asteroide.getY()>=y &&this.asteroide.getY()<=y+ay){
+            this.dispose();
+    }if(this.labelNave.getLocation()==this.asteroide2.getLocation()){
+        this.dispose();
+    }
+    if(this.labelNave.getX()==this.asteroide3.getX()){
+        this.dispose();
+    }
+    }
     /**********************************************************************************************************/
 
     public static void main(String[] args) {

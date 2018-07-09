@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Threats.Asteroide;
 import static java.lang.Thread.yield;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,24 +18,40 @@ import javax.swing.JLabel;
  */
 public class Tiempo extends Thread {
 
-   
+    
     private JFrame padre;
-    private JLabel time;
-    private int contador=0;
+    private JLabel time,asteroide,asteroide2,asteroide3;
+    private int contador=1;
 
 public Tiempo(){   
 }
 
 
-public Tiempo(JLabel lbltime, JFrame padre){
+public Tiempo(JLabel lbltime, JFrame padre,JLabel asteroide,JLabel asteroide2,JLabel asteroide3){
     this.padre=padre;
     this.time=lbltime;
+    this.asteroide=asteroide;
+    this.asteroide2=asteroide2;
+    this.asteroide3=asteroide3;
 }
 
     @Override
     public void run() {
-        while(contador<=120){
-            //funcion deacuerdo al tiempo
+       
+        while(contador<=121){
+            
+            if(contador%9==0){
+                 Asteroide as= new Asteroide(this.asteroide,9);
+                  as.start();
+            }
+            if(contador%7==0){
+                 Asteroide as= new Asteroide(this.asteroide2,7);
+                  as.start();
+            }
+            if(contador%5==0){
+                 Asteroide as= new Asteroide(this.asteroide3,5);
+                  as.start();
+            }
             try {
                 time.setText(String.valueOf(contador++));
                 Thread.sleep(1000);

@@ -75,3 +75,4 @@ break; // hace que la imagen se mueva con las teclas.
      
     }
 
+
