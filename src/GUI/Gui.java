@@ -11,8 +11,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -53,7 +51,7 @@ public class Gui extends JFrame {
         asteroide3 =new JLabel();
         time =new JLabel();
         time2 =new JLabel();
-        time2 =new JLabel();
+        
         time2.setText("tiempo");
         Container container = getContentPane();
 
@@ -71,7 +69,7 @@ public class Gui extends JFrame {
             labelNave.setIcon(new ImageIcon(getClass().getResource("nave.gif")));
             asteroide.setBounds(800,200, 50, 50);
             asteroide2.setBounds(800,100, 50, 50);
-            labelNave.setBounds(10, 10, 200, 200);
+            labelNave.setBounds(10, 10, 125, 125);
             asteroide3.setBounds(800,175, 50, 50);
             ImageIcon img = new ImageIcon(getClass().getResource("/GUI/Asteroid2b.gif"));
             Icon icon = new ImageIcon(img.getImage().getScaledInstance(asteroide.getWidth(),asteroide.getHeight(), Image.SCALE_DEFAULT));
@@ -86,13 +84,17 @@ public class Gui extends JFrame {
         asteroide3.setIcon(icon3);
             
             
-            time.setBounds(50,2, 100,100);
+            time.setBounds(50,300, 100,100);
             time.setForeground(Color.yellow);
-            time2.setBounds(3,2, 100,100);
+            time2.setBounds(3,300,100,100);
             time2.setForeground(Color.yellow);
+            //////////////////////////////////////////////////////////////////////////////
              Tiempo tim=new Tiempo(time,getVentana(),asteroide,asteroide2,asteroide3);
              tim.start();
-             navePrincipal na=new navePrincipal("algo",600,labelNave,getVentana());
+            
+             navePrincipal na=new navePrincipal("algo",600,labelNave,getVentana(),0);
+             
+             /////////////////////////////////////////////////////////////////////////////
             container.add(labelNave);
             container.add(asteroide);
              container.add(asteroide2);
@@ -110,32 +112,9 @@ public class Gui extends JFrame {
            
     }
     /***********************************************************************************************************/
-    /*
-    public void choque(){
-        int x=labelNave.getX();
-        int ay=labelNave.getHeight();
-        int y=labelNave.getY();
-        int ax=labelNave.getWidth();
-        if(this.asteroide.getX()>=x && this.asteroide.getX()<=x+ax &&this.asteroide.getY()>=y &&this.asteroide.getY()<=y+ay){
-            this.dispose();
-    }if(this.labelNave.getLocation()==this.asteroide2.getLocation()){
-        this.dispose();
-    }
-    if(this.labelNave.getX()==this.asteroide3.getX()){
-        this.dispose();
-    }
-    }
+   
     /**********************************************************************************************************/
-
-    public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Gui().setVisible(true);
-            }
-        });
-
-    }
+  
 
 
 

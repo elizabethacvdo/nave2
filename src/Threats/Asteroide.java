@@ -5,6 +5,9 @@
  */
 package Threats;
 
+
+
+import static Threats.navePrincipal.detectarColicion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,22 +18,26 @@ import javax.swing.JLabel;
  * @author Mery Acevedo
  */
 public class Asteroide extends Thread{
-    private JLabel asteroide;
-    private int con;
+    private JLabel asteroide=null;
+    private int con=0,x,y,ax,ay;
+    private static boolean a;
       
     
     public Asteroide(JLabel asteroide ,int contador){
         this.asteroide=asteroide;
         this.con=contador;
+        a=false;
     }
  
     
 
     @Override
     public void run() {
+       
         if(con==9){
-        for(int i=800;i>=10;i-=9){
+        for(int i=790;i>=10;i-=8){
             this.asteroide.setLocation(i,250);
+            a=detectarColicion(asteroide);
             if(i==10){
               this.asteroide.removeAll();  
             }
@@ -42,7 +49,9 @@ public class Asteroide extends Thread{
     }
         }if(con==7){
             for(int i=700;i>=10;i-=10){
-            this.asteroide.setLocation(i,100);
+            this.asteroide.setLocation(i,140);
+           a=detectarColicion(asteroide);
+           
             
             try {
                 sleep(100);
@@ -52,8 +61,10 @@ public class Asteroide extends Thread{
     }this.asteroide.removeAll();
         }
         if(con==5){
-            for(int i=700;i>=10;i-=15){
-            this.asteroide.setLocation(i,175);
+            for(int i=700;i>=10;i-=18){
+            this.asteroide.setLocation(i,10);
+            a=detectarColicion(asteroide);
+                
             
             try {
                 sleep(100);
@@ -64,15 +75,14 @@ public class Asteroide extends Thread{
         }
         
     }
-    
-    public int algo(){
-        return this.con;
+
+    public static boolean isA() {
+        return a;
     }
+
     
     
-    public void algo2(int i){
-        this.con=i;
-    }
+   
     
     
     

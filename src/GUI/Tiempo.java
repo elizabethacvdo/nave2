@@ -6,6 +6,8 @@
 package GUI;
 
 import Threats.Asteroide;
+import static Threats.Asteroide.isA;
+import guardianes_de_la_galaxia.win;
 import static java.lang.Thread.yield;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +23,8 @@ public class Tiempo extends Thread {
     
     private JFrame padre;
     private JLabel time,asteroide,asteroide2,asteroide3;
-    private int contador=1;
+    private int contador=5;
+    private int x,y,ax,ay;
 
 public Tiempo(){   
 }
@@ -37,36 +40,49 @@ public Tiempo(JLabel lbltime, JFrame padre,JLabel asteroide,JLabel asteroide2,JL
 
     @Override
     public void run() {
-       
-        while(contador<=121){
+       contador=60;
+        while(contador>0){
             
             if(contador%9==0){
                  Asteroide as= new Asteroide(this.asteroide,9);
+           
+               
+               
                   as.start();
             }
             if(contador%7==0){
                  Asteroide as= new Asteroide(this.asteroide2,7);
+                 
                   as.start();
             }
             if(contador%5==0){
                  Asteroide as= new Asteroide(this.asteroide3,5);
+                 
                   as.start();
             }
             try {
-                time.setText(String.valueOf(contador++));
+                time.setText(String.valueOf(contador--));
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Tiempo.class.getName()).log(Level.SEVERE, null, ex);
             }
         
         
-        }//aqui se acaba el tiempo 
+        }yield();
+        if(isA()==false){
+        new win().setVisible(true);
+        padre.dispose();}
         
      
-        
-        yield();
+      
         
     
     }
+
+    
+   
+
+  
+    
     
 }
